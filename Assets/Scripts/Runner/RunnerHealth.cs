@@ -71,5 +71,14 @@ namespace HolidayGameJam
         {
             return _isDead;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Hazard"))
+            {
+                Debug.Log($"Runner hit hazard: {other.name}");
+                TakeDamage(maxHealth);
+            }
+        }
     }
 }
