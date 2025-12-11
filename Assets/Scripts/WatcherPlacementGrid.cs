@@ -5,7 +5,7 @@ public class WatcherPlacementGrid : MonoBehaviour
 {
     [Header("Grid Settings")]
     [SerializeField] private float gridCellSize = 1f;
-    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private string dioramaTag = "Diorama";
 
     [Header("Placement Preview")]
     [SerializeField] private GameObject placementPreviewPrefab;
@@ -124,15 +124,26 @@ public class WatcherPlacementGrid : MonoBehaviour
         Vector2 mousePosition = mousePositionAction.ReadValue<Vector2>();
         Ray ray = activeCamera.ScreenPointToRay(mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
-            currentGridPosition = SnapToGrid(hit.point);
-            hasValidPlacement = true;
-
-            if (placementPreviewInstance != null)
+            if (hit.collider.CompareTag(dioramaTag))
             {
-                placementPreviewInstance.SetActive(true);
-                placementPreviewInstance.transform.position = currentGridPosition;
+                currentGridPosition = SnapToGrid(hit.point);
+                hasValidPlacement = true;
+
+                if (placementPreviewInstance != null)
+                {
+                    placementPreviewInstance.SetActive(true);
+                    placementPreviewInstance.transform.position = currentGridPosition;
+                }
+            }
+            else
+            {
+                hasValidPlacement = false;
+                if (placementPreviewInstance != null)
+                {
+                    placementPreviewInstance.SetActive(false);
+                }
             }
         }
         else
