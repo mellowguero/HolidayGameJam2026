@@ -80,5 +80,14 @@ namespace HolidayGameJam
                 TakeDamage(maxHealth);
             }
         }
+        
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit.collider.CompareTag("Hazard"))
+            {
+                Debug.Log($"Runner hit hazard (CharacterController): {hit.collider.name}");
+                TakeDamage(maxHealth);
+            }
+        }
     }
 }
