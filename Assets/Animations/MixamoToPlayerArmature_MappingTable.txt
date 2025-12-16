@@ -1,0 +1,89 @@
+# Bone Mapping Table: Mixamo Rig to PlayerArmature
+# Format: SourceBonePath = TargetBonePath
+# Use this table in the Auto-Generate Bone Mappings window
+
+# Core Skeleton
+mixamorig:Hips = Hips
+mixamorig:Spine = Spine
+mixamorig:Spine1 = Chest
+mixamorig:Spine2 = UpperChest
+mixamorig:Neck = Neck
+mixamorig:Head = Head
+
+# Left Arm
+mixamorig:LeftShoulder = Left_Shoulder
+mixamorig:LeftArm = Left_UpperArm
+mixamorig:LeftForeArm = Left_LowerArm
+mixamorig:LeftHand = Left_Hand
+
+# Left Hand Fingers
+mixamorig:LeftHandThumb1 = Left_ThumbProximal
+mixamorig:LeftHandThumb2 = Left_ThumbIntermediate
+mixamorig:LeftHandThumb3 = Left_ThumbDistal
+mixamorig:LeftHandThumb4 = Left_ThumbDistalEnd
+
+mixamorig:LeftHandIndex1 = Left_IndexProximal
+mixamorig:LeftHandIndex2 = Left_IndexIntermediate
+mixamorig:LeftHandIndex3 = Left_IndexDistal
+mixamorig:LeftHandIndex4 = Left_IndexDistalEnd
+
+mixamorig:LeftHandMiddle1 = Left_MiddleProximal
+mixamorig:LeftHandMiddle2 = Left_MiddleIntermediate
+mixamorig:LeftHandMiddle3 = Left_MiddleDistal
+mixamorig:LeftHandMiddle4 = Left_MiddleDistalEnd
+
+mixamorig:LeftHandRing1 = Left_RingProximal
+mixamorig:LeftHandRing2 = Left_RingIntermediate
+mixamorig:LeftHandRing3 = Left_RingDistal
+mixamorig:LeftHandRing4 = Left_RingDistalEnd
+
+mixamorig:LeftHandPinky1 = Left_PinkyProximal
+mixamorig:LeftHandPinky2 = Left_PinkyIntermediate
+mixamorig:LeftHandPinky3 = Left_PinkyDistal
+mixamorig:LeftHandPinky4 = Left_PinkyDistalEnd
+
+# Right Arm
+mixamorig:RightShoulder = Right_Shoulder
+mixamorig:RightArm = Right_UpperArm
+mixamorig:RightForeArm = Right_LowerArm
+mixamorig:RightHand = Right_Hand
+
+# Right Hand Fingers
+mixamorig:RightHandThumb1 = Right_ThumbProximal
+mixamorig:RightHandThumb2 = Right_ThumbIntermediate
+mixamorig:RightHandThumb3 = Right_ThumbDistal
+mixamorig:RightHandThumb4 = Right_ThumbDistalEnd
+
+mixamorig:RightHandIndex1 = Right_IndexProximal
+mixamorig:RightHandIndex2 = Right_IndexIntermediate
+mixamorig:RightHandIndex3 = Right_IndexDistal
+mixamorig:RightHandIndex4 = Right_IndexDistalEnd
+
+mixamorig:RightHandMiddle1 = Right_MiddleProximal
+mixamorig:RightHandMiddle2 = Right_MiddleIntermediate
+mixamorig:RightHandMiddle3 = Right_MiddleDistal
+mixamorig:RightHandMiddle4 = Right_MiddleDistalEnd
+
+mixamorig:RightHandRing1 = Right_RingProximal
+mixamorig:RightHandRing2 = Right_RingIntermediate
+mixamorig:RightHandRing3 = Right_RingDistal
+mixamorig:RightHandRing4 = Right_RingDistalEnd
+
+mixamorig:RightHandPinky1 = Right_PinkyProximal
+mixamorig:RightHandPinky2 = Right_PinkyIntermediate
+mixamorig:RightHandPinky3 = Right_PinkyDistal
+mixamorig:RightHandPinky4 = Right_PinkyDistalEnd
+
+# Left Leg
+mixamorig:LeftUpLeg = Left_UpperLeg
+mixamorig:LeftLeg = Left_LowerLeg
+mixamorig:LeftFoot = Left_Foot
+mixamorig:LeftToeBase = Left_Toes
+mixamorig:LeftToe_End = Left_ToesEnd
+
+# Right Leg
+mixamorig:RightUpLeg = Right_UpperLeg
+mixamorig:RightLeg = Right_LowerLeg
+mixamorig:RightFoot = Right_Foot
+mixamorig:RightToeBase = Right_Toes
+mixamorig:RightToe_End = Right_ToesEnd

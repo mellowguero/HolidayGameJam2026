@@ -1,0 +1,226 @@
+ANIMATION RETARGETING SYSTEM - ARCHITECTURE OVERVIEW
+=====================================================
+
+SCRIPTABLEOBJECT HIERARCHY
+---------------------------
+
+1. BoneMappingEntry (Individual ScriptableObject Asset)
+   ├─ sourceBonePath: string
+   ├─ targetBonePath: string
+   ├─ sourceBoneTransform: Transform (runtime)
+   └─ targetBoneTransform: Transform (runtime)
+
+   Menu Path: Create > Animation Retargeting > Bone Mapping Entry
+   Purpose: Represents a single bone-to-bone mapping
+   Example: "mixamorig:Hips" → "Hips"
+
+2. BoneMapping (Collection ScriptableObject Asset)
+   ├─ sourceRig: GameObject
+   ├─ targetRig: GameObject
+   ├─ boneMappings: List<BoneMappingEntry>  ← Array of ScriptableObject references
+   ├─ sourceAnimations: List<AnimationClip>
+   └─ outputFolderPath: string
+
+   Menu Path: Create > Animation Retargeting > Bone Mapping Collection
+   Purpose: Groups multiple BoneMappingEntry assets and manages retargeting workflow
+   Example: "MixamoToPlayerRig_Collection"
+
+
+WORKFLOW DIAGRAM
+----------------
+
+┌─────────────────────────────────────────────────────────┐
+│                     USER INPUT                          │
+│  • Source Rig (GameObject)                              │
+│  • Target Rig (GameObject)                              │
+│  • Mapping Table (Text)                                 │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│          AUTO-GENERATE MAPPING WINDOW                   │
+│  1. Parse mapping table                                 │
+│  2. Create individual BoneMappingEntry assets           │
+│  3. Add entries to BoneMapping collection               │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│              BONE MAPPING COLLECTION                    │
+│  Contains:                                              │
+│  • Array of BoneMappingEntry references                 │
+│  • Source/Target rig references                         │
+│  • Source animation clips                               │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│            ANIMATION RETARGETER ENGINE                  │
+│  1. Build bone map from entries                         │
+│  2. Sample source animation at 60 FPS                   │
+│  3. Remap transforms to target rig                      │
+│  4. Generate animation curves                           │
+│  5. Create new AnimationClip                            │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│                   OUTPUT                                │
+│  • Preview in scene (temporary)                         │
+│  • Baked .anim files (permanent)                        │
+└─────────────────────────────────────────────────────────┘
+
+
+PROJECT STRUCTURE EXAMPLE
+--------------------------
+
+Assets/
+├── Animations/
+│   ├── BoneMappingEntries/              ← Individual mapping assets
+│   │   ├── mixamorig_Hips_to_Hips.asset
+│   │   ├── mixamorig_Spine_to_Spine.asset
+│   │   ├── mixamorig_LeftArm_to_Left_UpperArm.asset
+│   │   └── ... (70+ individual entries)
+│   │
+│   ├── Collections/                     ← Mapping collections
+│   │   ├── MixamoToPlayerRig.asset
+│   │   └── MixamoToEnemyRig.asset
+│   │
+│   ├── Retargeted/                      ← Output animations
+│   │   ├── running_slide_Retargeted.anim
+│   │   └── corkscrew_slide_Retargeted.anim
+│   │
+│   ├── Running Slide.fbx                ← Source animations
+│   ├── running_slide.anim
+│   └── MixamoToPlayerArmature_MappingTable.txt
+
+
+BENEFITS OF THIS ARCHITECTURE
+------------------------------
+
+1. MODULARITY
+   - Individual bone mappings are reusable
+   - Easy to create variations (e.g., MixamoToPlayerRig, MixamoToEnemyRig)
+   - Mix and match entries for different scenarios
+
+2. MAINTAINABILITY
+   - Update a single BoneMappingEntry affects all collections using it
+   - Clear separation between data (entries) and workflow (collection)
+   - Easy to identify and fix incorrect mappings
+
+3. LLM INTEGRATION
+   - Auto-generate creates discrete, inspectable assets
+   - LLM-generated tables convert directly to ScriptableObject assets
+   - Human-readable file names for easy verification
+
+4. VERSION CONTROL
+   - Individual entries are small, focused files
+   - Easy to see what changed in diffs
+   - Merge conflicts are less likely
+
+5. INSPECTOR USABILITY
+   - Drag-and-drop individual entries
+   - View mapping details inline in collection
+   - Create reusable "mapping libraries"
+
+
+DATA FLOW
+---------
+
+INPUT (Text Table):
+mixamorig:Hips = Hips
+mixamorig:Spine = Spine
+
+    ↓ Auto-Generate Window
+
+ASSETS CREATED:
+• mixamorig_Hips_to_Hips.asset (BoneMappingEntry)
+• mixamorig_Spine_to_Spine.asset (BoneMappingEntry)
+
+    ↓ Added to Collection
+
+COLLECTION UPDATED:
+MixamoToPlayerRig.asset (BoneMapping)
+├─ boneMappings[0] → mixamorig_Hips_to_Hips.asset
+└─ boneMappings[1] → mixamorig_Spine_to_Spine.asset
+
+    ↓ Retargeting Engine
+
+OUTPUT:
+running_slide_Retargeted.anim
+
+
+RUNTIME BEHAVIOR
+----------------
+
+1. REFRESH BONE TRANSFORMS
+   - Called before retargeting
+   - Resolves bone paths to Transform references
+   - Caches transforms in each BoneMappingEntry
+
+2. BUILD BONE MAP
+   - Creates Dictionary<Transform, Transform>
+   - Source bone → Target bone
+   - Used for fast lookup during sampling
+
+3. SAMPLE AND REMAP
+   - Sample source animation at each frame
+   - Apply transforms to corresponding target bones
+   - Record curves for target bones
+
+4. CURVE GENERATION
+   - Create AnimationCurve for each property
+   - Position: localPosition.x/y/z
+   - Rotation: localRotation.x/y/z/w
+   - Ensure quaternion continuity
+
+
+EXTENDING THE SYSTEM
+---------------------
+
+To add new features:
+
+1. CUSTOM BONE MAPPING LOGIC
+   - Extend BoneMappingEntry class
+   - Add custom properties (e.g., scale factor, offset)
+   - Modify AnimationRetargeter.BuildBoneMap()
+
+2. ADVANCED RETARGETING
+   - Implement IK solving
+   - Add root motion handling
+   - Support scale animations
+
+3. BATCH OPERATIONS
+   - Create BoneMappingBatch for multi-rig workflows
+   - Add validation tools
+   - Implement automatic hierarchy matching
+
+
+KEY CLASSES AND RESPONSIBILITIES
+---------------------------------
+
+BoneMappingEntry.cs
+└─ Stores: Individual bone mapping data
+└─ Methods: Initialize(), IsValid(), ClearRuntimeReferences()
+
+BoneMapping.cs
+└─ Stores: Collection of mappings + workflow data
+└─ Methods: AddMappingAsset(), ValidateMappings(), RefreshBoneTransforms()
+
+AnimationRetargeter.cs
+└─ Static utility class
+└─ Methods: RetargetAnimation(), PreviewAnimation(), BuildBoneMap()
+
+AnimationRetargetingWindow.cs
+└─ Main editor window
+└─ Handles: UI, preview playback, asset creation
+
+AutoGenerateMappingWindow.cs
+└─ Bulk import tool
+└─ Parses: Text tables → BoneMappingEntry assets
+
+BoneMappingEditor.cs
+└─ Custom inspector for BoneMapping
+
+BoneMappingEntryEditor.cs
+└─ Custom inspector for BoneMappingEntry
