@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fdecadb0996a2d44db33de79e464dfa3
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 280069
+  packageName: Master Explosion FX
+  packageVersion: 1.0
+  assetPath: Assets/MasterStylizedExplosions/Shaders/CommonParticleLoop.shader
+  uploadId: 658932
