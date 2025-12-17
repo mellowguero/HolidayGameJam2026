@@ -75,6 +75,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("Mouse look sensitivity")]
+        public float MouseSensitivity = 1.0f;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -135,7 +138,10 @@ namespace StarterAssets
 
         private void Start()
         {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+            if (CinemachineCameraTarget != null)
+            {
+                _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+            }
             
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
@@ -195,13 +201,13 @@ namespace StarterAssets
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
+            if (_input != null && _input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * MouseSensitivity;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * MouseSensitivity;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -209,12 +215,17 @@ namespace StarterAssets
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // Cinemachine will follow this target
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
-                _cinemachineTargetYaw, 0.0f);
+            if (CinemachineCameraTarget != null)
+            {
+                CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
+                    _cinemachineTargetYaw, 0.0f);
+            }
         }
 
         private void Move()
         {
+            if (_input == null) return;
+            
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -289,6 +300,8 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
+            if (_input == null) return;
+            
             if (Grounded)
             {
                 // reset the fall timeout timer
