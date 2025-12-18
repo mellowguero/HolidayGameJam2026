@@ -154,15 +154,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.DestructibleObstacle
   maxHealth: 1
   destroyOnZeroHealth: 1
-  becomeDebris: 1
+  becomeDebris: 0
   debrisLifetime: 3
   damageFlashDuration: 0.1
   shakeIntensity: 0.25
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  destructionParticlePrefab: {fileID: 0}
+  destructionParticlePrefab: {fileID: 6448938394141513457, guid: 9ab1af1c7a6f19840b7f75fbf8dc4cc0, type: 3}
   debrisPrefab: {fileID: 0}
-  destructionParticleLifetime: 1.5
-  debrisCount: 3
+  destructionParticleLifetime: 3
+  debrisCount: 5
   dropOnDestruction: {fileID: 0}
   dropChance: 0.1
   onDamaged:
@@ -334,7 +334,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   damageFlashDuration: 0.1
   shakeIntensity: 0.25
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  destructionParticlePrefab: {fileID: 0}
+  destructionParticlePrefab: {fileID: 6448938394141513457, guid: 9ab1af1c7a6f19840b7f75fbf8dc4cc0, type: 3}
   debrisPrefab: {fileID: 0}
   destructionParticleLifetime: 1.5
   debrisCount: 3
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 409568018}
   - component: {fileID: 409568017}
   m_Layer: 0
-  m_Name: ObstacleTester
+  m_Name: DestructionTestController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e78a4561d1316244a64b1289a22b3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.DestructibleObstacleTester
-  targetObstacle: {fileID: 6521018}
+  targetObstacles:
+  - {fileID: 6521018}
+  - {fileID: 1413933091}
+  - {fileID: 676037843}
+  - {fileID: 106286210}
   damageAmount: 1
 --- !u!4 &409568018
 Transform:
@@ -823,6 +827,7 @@ GameObject:
   - component: {fileID: 676037845}
   - component: {fileID: 676037844}
   - component: {fileID: 676037843}
+  - component: {fileID: 676037848}
   m_Layer: 0
   m_Name: Obstacle_Heavy_3HP
   m_TagString: Untagged
@@ -844,15 +849,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.DestructibleObstacle
   maxHealth: 3
   destroyOnZeroHealth: 1
-  becomeDebris: 1
+  becomeDebris: 0
   debrisLifetime: 3
-  damageFlashDuration: 0.1
+  damageFlashDuration: 0.12
   shakeIntensity: 0.5
-  damageColor: {r: 1, g: 0.66462564, b: 0.28773582, a: 1}
-  destructionParticlePrefab: {fileID: 0}
-  debrisPrefab: {fileID: 0}
-  destructionParticleLifetime: 1.5
-  debrisCount: 3
+  damageColor: {r: 1, g: 1, b: 0.3, a: 1}
+  destructionParticlePrefab: {fileID: 6448938394141513457, guid: 9ab1af1c7a6f19840b7f75fbf8dc4cc0, type: 3}
+  debrisPrefab: {fileID: 1732824940699030380, guid: 631d9c496de6e864280a52e638d6e68f, type: 3}
+  destructionParticleLifetime: 3
+  debrisCount: 10
   dropOnDestruction: {fileID: 0}
   dropChance: 0.1
   onDamaged:
@@ -948,12 +953,39 @@ Transform:
   m_GameObject: {fileID: 676037842}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.75194, y: 0.61, z: 3.21}
+  m_LocalPosition: {x: -11.75194, y: 0.61, z: 4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &676037848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676037842}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!43 &844393818
 Mesh:
   m_ObjectHideFlags: 0
@@ -1145,6 +1177,7 @@ GameObject:
   - component: {fileID: 1413933093}
   - component: {fileID: 1413933092}
   - component: {fileID: 1413933091}
+  - component: {fileID: 1413933096}
   m_Layer: 0
   m_Name: Obstacle_Meidum_2HP
   m_TagString: Untagged
@@ -1166,15 +1199,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.DestructibleObstacle
   maxHealth: 2
   destroyOnZeroHealth: 1
-  becomeDebris: 1
+  becomeDebris: 0
   debrisLifetime: 3
   damageFlashDuration: 0.1
   shakeIntensity: 0.35
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  destructionParticlePrefab: {fileID: 0}
-  debrisPrefab: {fileID: 0}
-  destructionParticleLifetime: 1.5
-  debrisCount: 3
+  damageColor: {r: 1, g: 0.55, b: 0, a: 1}
+  destructionParticlePrefab: {fileID: 6448938394141513457, guid: 9ab1af1c7a6f19840b7f75fbf8dc4cc0, type: 3}
+  debrisPrefab: {fileID: 3568602100860587575, guid: ec65b587adf5e1e4ca72b5f3ae710ed8, type: 3}
+  destructionParticleLifetime: 3
+  debrisCount: 7
   dropOnDestruction: {fileID: 0}
   dropChance: 0.1
   onDamaged:
@@ -1270,12 +1303,39 @@ Transform:
   m_GameObject: {fileID: 1413933090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.75194, y: 0.61, z: 4.92}
+  m_LocalPosition: {x: -11.75194, y: 0.61, z: 3.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1413933096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413933090}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1521310264
 GameObject:
   m_ObjectHideFlags: 0

@@ -196,7 +196,11 @@ namespace HolidayGameJam
         {
             if (destructionParticlePrefab != null)
             {
-                GameObject particle = Instantiate(destructionParticlePrefab, transform.position, Quaternion.identity);
+                Vector3 spawnPosition = transform.position;
+                Quaternion spawnRotation = destructionParticlePrefab.transform.rotation;
+                
+                GameObject particle = Instantiate(destructionParticlePrefab, spawnPosition, spawnRotation);
+                particle.transform.localScale = Vector3.one;
                 Destroy(particle, destructionParticleLifetime);
             }
         }

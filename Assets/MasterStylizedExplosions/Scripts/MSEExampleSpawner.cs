@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MSEExampleSpawner : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class MSEExampleSpawner : MonoBehaviour
     public GameObject CurParticle;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Keyboard.current != null && Keyboard.current.aKey.wasPressedThisFrame)
         {
             index -= 1;
             if(index < 0)
@@ -19,7 +20,7 @@ public class MSEExampleSpawner : MonoBehaviour
             }
             Spawn();
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Keyboard.current != null && Keyboard.current.dKey.wasPressedThisFrame)
         {
             index += 1;
             if(index >= particles.Particles.Count)
@@ -32,7 +33,8 @@ public class MSEExampleSpawner : MonoBehaviour
         {
             index = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if ((Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame) || 
+            (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame))
         {
             Spawn();
         }

@@ -14,7 +14,6 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _LIMITUV_ON
-  - _MASK_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseMask:
-        m_Texture: {fileID: 2800000, guid: 166bcaa285318964883539e8e69ba21a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -74,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 89a075b4f23fc0e4fb5b126524a10fe1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -85,23 +84,39 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Feather: 0.32
+    - _Feather: 0.278
     - _FresnelScale: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _LimitUV: 1
-    - _Mask: 1
+    - _Mask: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -110,17 +125,17 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BackColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BackColor: {r: 0.05098038, g: 0.3715754, b: 0.8, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LimitUVRange: {r: 0, g: 5, b: 0.24, a: 1}
-    - _MaskOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _MaskScroll: {r: 0, g: 0, b: 0, a: 0}
-    - _MaskTiling: {r: 2, g: 1, b: 0, a: 0}
-    - _Offset: {r: 0, g: 1, b: 0, a: 0}
-    - _Scroll: {r: 0, g: 1, b: 0, a: 0}
+    - _LimitUVRange: {r: 0, g: 3, b: 0, a: 1}
+    - _MaskOffset: {r: 1.51, g: 0, b: 0, a: 0}
+    - _MaskScroll: {r: 0, g: 1, b: 0, a: 0}
+    - _MaskTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _SmoothStep: {r: 0, g: 1, b: 0, a: 0}
-    - _StretchMultiplier: {r: 0, g: 0, b: 0, a: 0}
+    - _StretchMultiplier: {r: 0, g: 0.54, b: 0, a: 0}
     - _StretchUVDes: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
