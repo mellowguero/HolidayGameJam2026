@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3429211344668475496}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70694774, w: 0.70726585}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7069463, w: 0.7072673}
   m_LocalPosition: {x: -10.825472, y: 1, z: 2.4921265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -165,54 +165,54 @@ MonoBehaviour:
   - m_Vertices: 0b0000000e00000012000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -1, y: -0.05, z: 1}
-  - {x: 1, y: -0.05, z: 1}
-  - {x: -1, y: 0.05, z: 1}
-  - {x: 1, y: 0.05, z: 1}
-  - {x: 1, y: -0.05, z: 1}
-  - {x: 1, y: -0.05, z: -1}
-  - {x: 1, y: 0.05, z: 1}
-  - {x: 1, y: 0.05, z: -1}
-  - {x: 1, y: -0.05, z: -1}
-  - {x: -1, y: -0.05, z: -1}
-  - {x: 1, y: 0.05, z: -1}
-  - {x: -1, y: 0.05, z: -1}
-  - {x: -1, y: -0.05, z: -1}
-  - {x: -1, y: -0.05, z: 1}
-  - {x: -1, y: 0.05, z: -1}
-  - {x: -1, y: 0.05, z: 1}
-  - {x: -1, y: 0.05, z: 1}
-  - {x: 1, y: 0.05, z: 1}
-  - {x: -1, y: 0.05, z: -1}
-  - {x: 1, y: 0.05, z: -1}
-  - {x: -1, y: -0.05, z: -1}
-  - {x: 1, y: -0.05, z: -1}
-  - {x: -1, y: -0.05, z: 1}
-  - {x: 1, y: -0.05, z: 1}
+  - {x: -3.5116303, y: -0.04999974, z: 1}
+  - {x: 0.99999976, y: -0.04999974, z: 1}
+  - {x: -3.5116303, y: 0.05000026, z: 1}
+  - {x: 0.99999976, y: 0.05000026, z: 1}
+  - {x: 0.99999976, y: -0.04999974, z: 1}
+  - {x: 0.99999976, y: -0.04999974, z: -1}
+  - {x: 0.99999976, y: 0.05000026, z: 1}
+  - {x: 0.99999976, y: 0.05000026, z: -1}
+  - {x: 0.99999976, y: -0.04999974, z: -1}
+  - {x: -3.5116303, y: -0.04999974, z: -1}
+  - {x: 0.99999976, y: 0.05000026, z: -1}
+  - {x: -3.5116303, y: 0.05000026, z: -1}
+  - {x: -3.5116303, y: -0.04999974, z: -1}
+  - {x: -3.5116303, y: -0.04999974, z: 1}
+  - {x: -3.5116303, y: 0.05000026, z: -1}
+  - {x: -3.5116303, y: 0.05000026, z: 1}
+  - {x: -3.5116303, y: 0.05000026, z: 1}
+  - {x: 0.99999976, y: 0.05000026, z: 1}
+  - {x: -3.5116303, y: 0.05000026, z: -1}
+  - {x: 0.99999976, y: 0.05000026, z: -1}
+  - {x: -3.5116303, y: -0.04999974, z: -1}
+  - {x: 0.99999976, y: -0.04999974, z: -1}
+  - {x: -3.5116303, y: -0.04999974, z: 1}
+  - {x: 0.99999976, y: -0.04999974, z: 1}
   m_Textures0:
-  - {x: 2, y: 0.9}
-  - {x: 0, y: 0.9}
+  - {x: 4.51163, y: 0.90000004}
+  - {x: 0, y: 0.90000004}
+  - {x: 4.51163, y: 1}
+  - {x: 0, y: 1}
+  - {x: 2, y: 0.90000004}
+  - {x: 0, y: 0.90000004}
   - {x: 2, y: 1}
   - {x: 0, y: 1}
-  - {x: 2, y: 0.9}
-  - {x: 0, y: 0.9}
-  - {x: 2, y: 1}
+  - {x: 4.51163, y: 0.90000004}
+  - {x: 0, y: 0.90000004}
+  - {x: 4.51163, y: 1}
   - {x: 0, y: 1}
-  - {x: 2, y: 0.9}
-  - {x: 0, y: 0.9}
-  - {x: 2, y: 1}
-  - {x: 0, y: 1}
-  - {x: 2, y: 0.9}
-  - {x: 0, y: 0.9}
+  - {x: 2, y: 0.90000004}
+  - {x: 0, y: 0.90000004}
   - {x: 2, y: 1}
   - {x: 0, y: 1}
   - {x: 0, y: 1}
-  - {x: 2, y: 1}
+  - {x: 4.51163, y: 1}
   - {x: 0, y: -1}
-  - {x: 2, y: -1}
-  - {x: 2, y: -1}
+  - {x: 4.51163, y: -1}
+  - {x: 4.51163, y: -1}
   - {x: 0, y: -1}
-  - {x: 2, y: 1}
+  - {x: 4.51163, y: 1}
   - {x: 0, y: 1}
   m_Textures2: []
   m_Textures3: []
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1771
+  m_VersionIndex: 2790
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Shape:
     rid: 4297661532645359616
   m_ShapeRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_UnmodifiedMeshVersion: 1771
-  m_Size: {x: 2, y: 0.1, z: 2}
-  m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_UnmodifiedMeshVersion: 2790
+  m_Size: {x: 4.51163, y: 0.1, z: 2}
+  m_LocalCenter: {x: -1.2558153, y: 0.00000023841858, z: 0}
   references:
     version: 2
     RefIds:
@@ -373,7 +373,6 @@ MonoBehaviour:
   maxHealth: 1
   destroyOnZeroHealth: 1
   becomeDebris: 0
-  debrisLifetime: 3
   damageFlashDuration: 0.1
   shakeIntensity: 0.2
   damageColor: {r: 0, g: 0.6699004, b: 1, a: 0.019607844}
@@ -388,6 +387,10 @@ MonoBehaviour:
   - {fileID: 8962040844339003964, guid: ab70985a7009b154dad1441552bb4eff, type: 3}
   destructionParticleLifetime: 3
   debrisCount: 10
+  debrisScaleMultiplier: 0.05
+  debrisLifetime: 3
+  debrisFadeDuration: 1
+  debrisShrinkEnabled: 1
   dropOnDestruction: {fileID: 0}
   dropChance: 0.1
   onDamaged:
