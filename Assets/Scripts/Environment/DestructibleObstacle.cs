@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Environment;
 
 namespace HolidayGameJam
 {
@@ -16,9 +17,6 @@ namespace HolidayGameJam
         [Tooltip("Convert to non-colliding debris instead of destroying")]
         [SerializeField] private bool becomeDebris = false;
         
-        [Tooltip("How long debris exists before despawn")]
-        [SerializeField] private float debrisLifetime = 3f;
-        
         [Header("Visual Feedback")]
         [Tooltip("Duration of damage flash effect")]
         [SerializeField] private float damageFlashDuration = 0.1f;
@@ -33,14 +31,27 @@ namespace HolidayGameJam
         [Tooltip("Particle effect spawned on destruction")]
         [SerializeField] private GameObject destructionParticlePrefab;
         
-        [Tooltip("Debris chunks spawned on destruction")]
-        [SerializeField] private GameObject debrisPrefab;
+        [Tooltip("Debris chunks spawned on destruction (randomly selected)")]
+        [SerializeField] private GameObject[] debrisPrefabs;
         
         [Tooltip("How long destruction particle effect lasts")]
         [SerializeField] private float destructionParticleLifetime = 1.5f;
         
         [Tooltip("Number of debris chunks to spawn")]
-        [SerializeField] private int debrisCount = 3;
+        [SerializeField] private int debrisCount = 8;
+        
+        [Tooltip("Scale multiplier for debris (adjust if debris appears too large or small)")]
+        [SerializeField] private float debrisScaleMultiplier = 0.5f;
+        
+        [Header("Debris Despawn Settings")]
+        [Tooltip("Total lifetime of debris before destruction")]
+        [SerializeField] private float debrisLifetime = 3f;
+        
+        [Tooltip("Duration of fade/shrink effect before destruction")]
+        [SerializeField] private float debrisFadeDuration = 1f;
+        
+        [Tooltip("Enable shrink effect as debris fades out")]
+        [SerializeField] private bool debrisShrinkEnabled = true;
         
         [Header("Drops")]
         [Tooltip("Optional collectible to spawn on destruction")]
@@ -207,12 +218,34 @@ namespace HolidayGameJam
         
         private void SpawnDebris()
         {
-            if (debrisPrefab == null) return;
+            if (debrisPrefabs == null || debrisPrefabs.Length == 0) return;
+            
+            Collider playerCollider = FindPlayerCollider();
             
             for (int i = 0; i < debrisCount; i++)
             {
+                GameObject randomDebrisPrefab = debrisPrefabs[Random.Range(0, debrisPrefabs.Length)];
+                if (randomDebrisPrefab == null) continue;
+                
                 Vector3 randomOffset = Random.insideUnitSphere * 0.5f;
-                GameObject debris = Instantiate(debrisPrefab, transform.position + randomOffset, Random.rotation);
+                GameObject debris = Instantiate(randomDebrisPrefab, transform.position + randomOffset, Random.rotation);
+                
+                if (debrisScaleMultiplier > 0)
+                {
+                    debris.transform.localScale = debris.transform.localScale * debrisScaleMultiplier;
+                }
+                
+                AutoDestroy autoDestroy = debris.GetComponent<AutoDestroy>();
+                if (autoDestroy != null)
+                {
+                    autoDestroy.Initialize(debrisLifetime, debrisFadeDuration, debrisShrinkEnabled);
+                }
+                
+                Collider debrisCollider = debris.GetComponent<Collider>();
+                if (debrisCollider != null && playerCollider != null)
+                {
+                    Physics.IgnoreCollision(debrisCollider, playerCollider, true);
+                }
                 
                 Rigidbody rb = debris.GetComponent<Rigidbody>();
                 if (rb != null)
@@ -222,9 +255,28 @@ namespace HolidayGameJam
                     rb.linearVelocity = randomVelocity;
                     rb.angularVelocity = Random.insideUnitSphere * 5f;
                 }
-                
-                Destroy(debris, debrisLifetime);
             }
+        }
+        
+        private Collider FindPlayerCollider()
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                CharacterController characterController = player.GetComponentInChildren<CharacterController>();
+                if (characterController != null)
+                {
+                    return characterController;
+                }
+                
+                Collider collider = player.GetComponentInChildren<Collider>();
+                if (collider != null)
+                {
+                    return collider;
+                }
+            }
+            
+            return null;
         }
         
         private void HandleDrop()
