@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 2525850556569670366}
   - component: {fileID: 7255913134464635912}
   - component: {fileID: 3162907023106263214}
-  - component: {fileID: 6619070005185453103}
-  - component: {fileID: 6994039174200296488}
   m_Layer: 0
   m_Name: Glass_Pane
   m_TagString: Untagged
@@ -358,58 +356,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &6619070005185453103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429211344668475496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3b1873cd6b62941a62800345c34343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.DestructibleObstacle
-  maxHealth: 1
-  destroyOnZeroHealth: 1
-  becomeDebris: 0
-  damageFlashDuration: 0.1
-  shakeIntensity: 0.2
-  damageColor: {r: 0, g: 0.6699004, b: 1, a: 0.019607844}
-  destructionParticlePrefab: {fileID: 5699089904351026947, guid: d480e662ee1744f4cb34c67cea47e1e3, type: 3}
-  debrisPrefabs:
-  - {fileID: 1824226821221326449, guid: 889d5cb959ef1d245a2931cee3a92400, type: 3}
-  - {fileID: 3126760789916101328, guid: 07be6500a1a0ef64aaefd3fcee4ca105, type: 3}
-  - {fileID: 2982039082814741281, guid: 4bc41e578c928d84baced504fb3a1c39, type: 3}
-  - {fileID: 7240995842809766705, guid: db4c4807bf75361408ba71c8adbed2e4, type: 3}
-  - {fileID: 8494004778994971624, guid: f98ea916e0ee6b54ab5671c004e7e2ee, type: 3}
-  - {fileID: 8494004778994971624, guid: f98ea916e0ee6b54ab5671c004e7e2ee, type: 3}
-  - {fileID: 8962040844339003964, guid: ab70985a7009b154dad1441552bb4eff, type: 3}
-  destructionParticleLifetime: 3
-  debrisCount: 10
-  debrisScaleMultiplier: 0.05
-  debrisLifetime: 3
-  debrisFadeDuration: 1
-  debrisShrinkEnabled: 1
-  dropOnDestruction: {fileID: 0}
-  dropChance: 0.1
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6994039174200296488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429211344668475496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 422c24197f848a84c824e59494194422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HolidayGameJam.BarrierInteraction
-  barrierType: 0
-  autoDestroyOnContact: 1
