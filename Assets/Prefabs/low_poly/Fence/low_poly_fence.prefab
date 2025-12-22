@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RayFireAssembly::RayFire.RayfireRigid
   init: 1
-  simTp: 0
+  simTp: 1
   objTp: 1
   dmlTp: 1
   physics:
@@ -1462,7 +1462,7 @@ MonoBehaviour:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
   mshDemol:
-    am: 131
+    am: 33
     var: 58
     dpf: 0.5
     bias: 0
@@ -1560,7 +1560,7 @@ MonoBehaviour:
     max: 100
     cur: 0
     col: 0
-    mlt: 1
+    mlt: 0.12
     shr: 0
   fading:
     onDemolition: 1
