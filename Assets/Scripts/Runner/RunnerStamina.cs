@@ -100,6 +100,11 @@ namespace HolidayGameJam
         {
             return _currentStamina > 0f;
         }
+
+        public void UseStamina(float amount)
+        {
+            ConsumeStamina(amount);
+        }
         
         public void ResetStamina()
         {

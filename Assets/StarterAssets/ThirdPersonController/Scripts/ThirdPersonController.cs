@@ -109,6 +109,7 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private HolidayGameJam.RunnerSlide _runnerSlide;
+        private HolidayGameJam.RunnerVault _runnerVault;
 
         private const float _threshold = 0.01f;
 
@@ -147,6 +148,7 @@ namespace StarterAssets
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
             TryGetComponent(out _runnerSlide);
+            TryGetComponent(out _runnerVault);
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -323,13 +325,21 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
+                    bool vaultAvailable = _runnerVault != null && _runnerVault.CanVaultNow();
+                    
+                    if (!vaultAvailable)
                     {
-                        _animator.SetBool(_animIDJump, true);
+                        // the square root of H * -2 * G = how much velocity needed to reach desired height
+                        _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                        // update animator if using character
+                        if (_hasAnimator)
+                        {
+                            _animator.SetBool(_animIDJump, true);
+                        }
+
+                        // Consume the jump input so it doesn't trigger again
+                        _input.jump = false;
                     }
                 }
 

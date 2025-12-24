@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool slide;
+		public bool vault;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +50,11 @@ namespace StarterAssets
 		{
 			SlideInput(value.isPressed);
 		}
+
+		public void OnVault(InputValue value)
+		{
+			VaultInput(value.isPressed);
+		}
 #endif
 
 
@@ -75,6 +81,11 @@ namespace StarterAssets
 		public void SlideInput(bool newSlideState)
 		{
 			slide = newSlideState;
+		}
+
+		public void VaultInput(bool newVaultState)
+		{
+			vault = newVaultState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
