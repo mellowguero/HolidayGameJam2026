@@ -72,11 +72,12 @@ namespace HolidayGameJam
                 goalTrigger.onGoalReached.AddListener(OnRoundEnd);
             }
 
-            RunnerHealth runnerHealth = FindAnyObjectByType<RunnerHealth>();
-            if (runnerHealth != null)
-            {
-                runnerHealth.onDeath.AddListener(OnRoundEnd);
-            }
+            // TODO: Re-enable when using Opsive CharacterHealth
+            // RunnerHealth runnerHealth = FindAnyObjectByType<RunnerHealth>();
+            // if (runnerHealth != null)
+            // {
+            //     runnerHealth.onDeath.AddListener(OnRoundEnd);
+            // }
         }
 
         private void UnsubscribeFromGameEvents()
@@ -87,11 +88,12 @@ namespace HolidayGameJam
                 goalTrigger.onGoalReached.RemoveListener(OnRoundEnd);
             }
 
-            RunnerHealth runnerHealth = FindAnyObjectByType<RunnerHealth>();
-            if (runnerHealth != null)
-            {
-                runnerHealth.onDeath.RemoveListener(OnRoundEnd);
-            }
+            // TODO: Re-enable when using Opsive CharacterHealth
+            // RunnerHealth runnerHealth = FindAnyObjectByType<RunnerHealth>();
+            // if (runnerHealth != null)
+            // {
+            //     runnerHealth.onDeath.RemoveListener(OnRoundEnd);
+            // }
         }
 
         private void OnRoundEnd()

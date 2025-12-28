@@ -7,7 +7,7 @@ namespace HolidayGameJam
     public class GameManager : MonoBehaviour
     {
         [Header("Component References")]
-        [SerializeField] private RunnerHealth _runnerHealth;
+        // [SerializeField] private RunnerHealth _runnerHealth; // TODO: Replace with Opsive CharacterHealth
         [SerializeField] private GoalTrigger _goalTrigger;
         [SerializeField] private GameStateUI _gameStateUI;
 
@@ -51,10 +51,11 @@ namespace HolidayGameJam
 
         private void FindSceneReferences()
         {
-            if (_runnerHealth == null)
-            {
-                _runnerHealth = FindAnyObjectByType<RunnerHealth>();
-            }
+            // TODO: Re-enable when using Opsive CharacterHealth
+            // if (_runnerHealth == null)
+            // {
+            //     _runnerHealth = FindAnyObjectByType<RunnerHealth>();
+            // }
 
             if (_goalTrigger == null)
             {
@@ -77,11 +78,12 @@ namespace HolidayGameJam
 
         private void WireUpEvents()
         {
-            if (_runnerHealth != null)
-            {
-                _runnerHealth.onDeath.RemoveListener(OnPlayerDeath);
-                _runnerHealth.onDeath.AddListener(OnPlayerDeath);
-            }
+            // TODO: Re-enable when using Opsive CharacterHealth
+            // if (_runnerHealth != null)
+            // {
+            //     _runnerHealth.onDeath.RemoveListener(OnPlayerDeath);
+            //     _runnerHealth.onDeath.AddListener(OnPlayerDeath);
+            // }
 
             if (_goalTrigger != null)
             {
@@ -141,10 +143,11 @@ namespace HolidayGameJam
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             
-            if (_runnerHealth != null)
-            {
-                _runnerHealth.onDeath.RemoveListener(OnPlayerDeath);
-            }
+            // TODO: Re-enable when using Opsive CharacterHealth
+            // if (_runnerHealth != null)
+            // {
+            //     _runnerHealth.onDeath.RemoveListener(OnPlayerDeath);
+            // }
 
             if (_goalTrigger != null)
             {

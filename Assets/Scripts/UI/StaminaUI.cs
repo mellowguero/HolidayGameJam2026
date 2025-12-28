@@ -6,8 +6,9 @@ namespace HolidayGameJam
     public class StaminaUI : MonoBehaviour
     {
         [Header("References")]
-        [Tooltip("Reference to the RunnerStamina component")]
-        public RunnerStamina runnerStamina;
+        // TODO: Replace with Opsive CharacterAttributeManager
+        // [Tooltip("Reference to the RunnerStamina component")]
+        // public RunnerStamina runnerStamina;
         
         [Tooltip("The fill image that represents stamina")]
         public Image fillImage;
@@ -33,11 +34,12 @@ namespace HolidayGameJam
         
         private void Start()
         {
-            if (runnerStamina == null)
-            {
-                Debug.LogError("StaminaUI: RunnerStamina reference is not set!");
-                return;
-            }
+            // TODO: Re-enable when using Opsive CharacterAttributeManager
+            // if (runnerStamina == null)
+            // {
+            //     Debug.LogError("StaminaUI: RunnerStamina reference is not set!");
+            //     return;
+            // }
             
             if (fillImage == null)
             {
@@ -45,7 +47,7 @@ namespace HolidayGameJam
                 return;
             }
             
-            runnerStamina.OnStaminaChanged.AddListener(OnStaminaChanged);
+            // runnerStamina.OnStaminaChanged.AddListener(OnStaminaChanged);
             
             _targetFillAmount = 1f;
             fillImage.fillAmount = 1f;
@@ -53,10 +55,11 @@ namespace HolidayGameJam
         
         private void OnDestroy()
         {
-            if (runnerStamina != null)
-            {
-                runnerStamina.OnStaminaChanged.RemoveListener(OnStaminaChanged);
-            }
+            // TODO: Re-enable when using Opsive CharacterAttributeManager
+            // if (runnerStamina != null)
+            // {
+            //     runnerStamina.OnStaminaChanged.RemoveListener(OnStaminaChanged);
+            // }
         }
         
         private void Update()
