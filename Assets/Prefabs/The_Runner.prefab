@@ -2919,6 +2919,7 @@ GameObject:
   - component: {fileID: 8148481841145610252}
   - component: {fileID: 7258111426603192074}
   - component: {fileID: 4702951206219930172}
+  - component: {fileID: 1102743521000151698}
   m_Layer: 31
   m_Name: The_Runner
   m_TagString: Player
@@ -3101,6 +3102,7 @@ MonoBehaviour:
   m_MovementTypes:
   - rid: 4297661738723835990
   m_Abilities:
+  - rid: 4297661738723836214
   - rid: 4297661738723836215
   - rid: 4297661738723836218
   - rid: 4297661738723836219
@@ -3115,7 +3117,6 @@ MonoBehaviour:
   - rid: 4297661738723836211
   - rid: 4297661738723836212
   - rid: 4297661738723836213
-  - rid: 4297661738723836214
   - rid: 4297661738723835992
   - rid: 4297661738723835993
   - rid: 4297661738723835994
@@ -3884,7 +3885,7 @@ MonoBehaviour:
           m_BlockList: []
           m_Default: 1
         m_Enabled: 1
-        m_StartType: 2
+        m_StartType: 0
         m_StopType: 1
         m_InputNames:
         - Action
@@ -3930,15 +3931,15 @@ MonoBehaviour:
         m_AbilityMessageText: 
         m_AbilityMessageIcon: {fileID: 0}
         m_InspectorDescription: 
-        m_ObjectDetection: 2
+        m_ObjectDetection: 4
         m_DetectLayers:
           serializedVersion: 2
           m_Bits: 8
         m_UseLookPosition: 0
         m_UseLookDirection: 0
-        m_AngleThreshold: 360
+        m_AngleThreshold: 27.2
         m_ObjectID: -1
-        m_CastDistance: 1.5
+        m_CastDistance: 1
         m_CastFrameInterval: 0
         m_CastOffset: {x: 0, y: 1, z: 0}
         m_TriggerInteraction: 1
@@ -4767,6 +4768,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1102743521000151698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617948949862537795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad3c196d0cbabd46951a32e0ec375af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VaultDebugger
 --- !u!1 &3620899887166225893
 GameObject:
   m_ObjectHideFlags: 0
