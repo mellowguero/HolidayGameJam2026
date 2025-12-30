@@ -3121,7 +3121,6 @@ MonoBehaviour:
   - rid: 4297661738723835993
   - rid: 4297661738723835994
   - rid: 4297661738723835995
-  - rid: 4297661759954354268
   m_ItemAbilities: []
   m_Effects: []
   m_OnMovementTypeActiveEvent:
@@ -3422,7 +3421,7 @@ MonoBehaviour:
           m_Default: 1
         m_Enabled: 1
         m_StartType: 2
-        m_StopType: 4
+        m_StopType: 2
         m_InputNames:
         - Crouch
         m_WaitForDoublePressTapTimeout: 0
@@ -3540,9 +3539,10 @@ MonoBehaviour:
           m_BlockList: []
           m_Default: 1
         m_Enabled: 0
-        m_StartType: 1
-        m_StopType: 1
-        m_InputNames: []
+        m_StartType: 2
+        m_StopType: 2
+        m_InputNames:
+        - Crouch
         m_WaitForDoublePressTapTimeout: 0
         m_LongPressDuration: 0.5
         m_WaitForLongPressRelease: 0
@@ -3589,7 +3589,7 @@ MonoBehaviour:
         m_CapsuleColliderHeightAdjustment: -0.4
         m_AllowSpeedChange: 0
         m_CrawlActiveStateName: CrawlActive
-        m_MaxTriggerObjectCount: 1
+        m_MaxTriggerObjectCount: 0
         m_TriggerLayerMask:
           serializedVersion: 2
           m_Bits: 2415919071
@@ -3830,7 +3830,7 @@ MonoBehaviour:
         m_StartType: 2
         m_StopType: 1
         m_InputNames:
-        - Action
+        - Crouch
         m_WaitForDoublePressTapTimeout: 0
         m_LongPressDuration: 0.5
         m_WaitForLongPressRelease: 0
@@ -3885,7 +3885,7 @@ MonoBehaviour:
           m_BlockList: []
           m_Default: 1
         m_Enabled: 1
-        m_StartType: 0
+        m_StartType: 2
         m_StopType: 1
         m_InputNames:
         - Action
@@ -3939,7 +3939,7 @@ MonoBehaviour:
         m_UseLookDirection: 0
         m_AngleThreshold: 27.2
         m_ObjectID: -1
-        m_CastDistance: 1
+        m_CastDistance: 1.5
         m_CastFrameInterval: 0
         m_CastOffset: {x: 0, y: 1, z: 0}
         m_TriggerInteraction: 1
@@ -4516,67 +4516,6 @@ MonoBehaviour:
             m_AudioConfig: {fileID: 0}
             m_AudioClips: []
         m_UnderwaterStateName: Underwater
-    - rid: 4297661759954354268
-      type: {class: Slide, ns: Opsive.UltimateCharacterController.Character.Abilities, asm: Opsive.UltimateCharacterController}
-      data:
-        m_States:
-        - m_Name: Default
-          m_Preset: {fileID: 0}
-          m_BlockList: []
-          m_Default: 1
-        m_Enabled: 1
-        m_StartType: 0
-        m_StopType: 0
-        m_InputNames: []
-        m_WaitForDoublePressTapTimeout: 0
-        m_LongPressDuration: 0.5
-        m_WaitForLongPressRelease: 0
-        m_AbilityStarter:
-          rid: -2
-        m_AbilityStopper:
-          rid: -2
-        m_AttributeModifier:
-          m_AttributeName: 
-          m_Amount: 0
-          m_AutoUpdate: 0
-          m_AutoUpdateStartDelay: 1
-          m_AutoUpdateInterval: 0.1
-          m_AutoUpdateDuration: -1
-        m_State: 
-        m_StateAppendItemIdentifierName: 0
-        m_AbilityIndexParameter: -1
-        m_StartAudioClipSet:
-          m_AudioConfig: {fileID: 0}
-          m_AudioClips: []
-        m_StopAudioClipSet:
-          m_AudioConfig: {fileID: 0}
-          m_AudioClips: []
-        m_AllowPositionalInput: 1
-        m_AllowRotationalInput: 1
-        m_UseGravity: 0
-        m_UseRootMotionPosition: 0
-        m_UseRootMotionRotation: 0
-        m_DetectHorizontalCollisions: 0
-        m_DetectVerticalCollisions: 0
-        m_DetectGroundCollisions: 0
-        m_AnimatorMotion: {fileID: 0}
-        m_StartEffectName: 
-        m_StartEffectIndex: -1
-        m_AllowEquippedSlotsMask: -1
-        m_AllowItemDefinitions: []
-        m_ImmediateUnequip: 0
-        m_ReequipSlots: 1
-        m_AbilityMessageText: 
-        m_AbilityMessageIcon: {fileID: 0}
-        m_InspectorDescription: 
-        m_SlideLimit:
-          m_MinValue: 50
-          m_MaxValue: 89
-        m_EdgeSlideLimit: 30
-        m_Acceleration: 0.14
-        m_MaxSlideSpeed: 0.54
-        m_SlideDamping: 0.08
-        m_OverrideUpDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5992206333857214765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4753,7 +4692,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3617948949862537795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -4775,7 +4714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3617948949862537795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad3c196d0cbabd46951a32e0ec375af, type: 3}
   m_Name: 
