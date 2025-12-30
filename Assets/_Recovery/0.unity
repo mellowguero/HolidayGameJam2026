@@ -4495,7 +4495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421594609899083446, guid: bcaa08ac2114c564cace3a394b31e94c, type: 3}
       propertyPath: 'managedReferences[4297661738723836209].m_InputNames.Array.data[0]'
-      value: Slide
+      value: Crawl
       objectReference: {fileID: 0}
     - target: {fileID: 3617948949862537795, guid: bcaa08ac2114c564cace3a394b31e94c, type: 3}
       propertyPath: m_Name
