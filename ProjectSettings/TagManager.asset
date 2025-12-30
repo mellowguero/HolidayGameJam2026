@@ -7,7 +7,6 @@ TagManager:
   - Hazard
   - Diorama
   - CinemachineTarget
-  - Vaultable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +14,7 @@ TagManager:
   - Vaultable
   - Water
   - UI
-  - 
+  - Climbable
   - 
   - 
   - 

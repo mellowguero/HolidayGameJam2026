@@ -3102,6 +3102,7 @@ MonoBehaviour:
   m_MovementTypes:
   - rid: 4297661738723835990
   m_Abilities:
+  - rid: 4297661738723836217
   - rid: 4297661738723836214
   - rid: 4297661738723836215
   - rid: 4297661738723836218
@@ -3109,7 +3110,6 @@ MonoBehaviour:
   - rid: 4297661738723836220
   - rid: 4297661738723836221
   - rid: 4297661738723836216
-  - rid: 4297661738723836217
   - rid: 4297661738723835991
   - rid: 4297661738723836208
   - rid: 4297661738723836209
@@ -3988,7 +3988,7 @@ MonoBehaviour:
           m_Preset: {fileID: 0}
           m_BlockList: []
           m_Default: 1
-        m_Enabled: 0
+        m_Enabled: 1
         m_StartType: 2
         m_StopType: 4
         m_InputNames:
@@ -4150,7 +4150,7 @@ MonoBehaviour:
           m_Preset: {fileID: 0}
           m_BlockList: []
           m_Default: 1
-        m_Enabled: 0
+        m_Enabled: 1
         m_StartType: 2
         m_StopType: 1
         m_InputNames:
@@ -4199,12 +4199,12 @@ MonoBehaviour:
         m_ObjectDetection: 2
         m_DetectLayers:
           serializedVersion: 2
-          m_Bits: 2415919067
+          m_Bits: 64
         m_UseLookPosition: 0
         m_UseLookDirection: 0
         m_AngleThreshold: 360
         m_ObjectID: -1
-        m_CastDistance: 1
+        m_CastDistance: 2.5
         m_CastFrameInterval: 0
         m_CastOffset: {x: 0, y: 0, z: 0}
         m_TriggerInteraction: 1
