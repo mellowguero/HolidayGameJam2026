@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 114f4adff47823d4aadb77159ef6731f, type: 3}
-  m_Name: FreeClimbCharacterIKPreset
-  m_EditorClassIdentifier: 
+  m_Name: FreeClimb
+  m_EditorClassIdentifier: Opsive.Shared.Runtime::Opsive.Shared.StateSystem.PersistablePreset
   m_Data:
-    m_ObjectType: Opsive.UltimateCharacterController.Character.CharacterIK
-    m_ValueHashes: 6e7947cf7b6368a7
+    m_ObjectType: Opsive.UltimateCharacterController.Character.AnimatorMonitor
+    m_ValueHashes: 
     m_LongValueHashes: 
-    m_ValuePositions: 0000000004000000
-    m_Values: 000000000000803f
+    m_ValuePositions: 
+    m_Values: 
     m_UnityObjects: []
-    m_Version: 3.1
+    m_Version: 3.4

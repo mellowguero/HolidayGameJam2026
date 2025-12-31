@@ -3103,8 +3103,8 @@ MonoBehaviour:
   - rid: 4297661738723835990
   m_Abilities:
   - rid: 4297661738723836217
-  - rid: 4297661738723836214
   - rid: 4297661738723836215
+  - rid: 4297661738723836214
   - rid: 4297661738723836218
   - rid: 4297661738723836219
   - rid: 4297661738723836220
@@ -4037,12 +4037,12 @@ MonoBehaviour:
         m_ObjectDetection: 2
         m_DetectLayers:
           serializedVersion: 2
-          m_Bits: 2415919067
+          m_Bits: 64
         m_UseLookPosition: 0
         m_UseLookDirection: 1
         m_AngleThreshold: 360
         m_ObjectID: -1
-        m_CastDistance: 1
+        m_CastDistance: 2.5
         m_CastFrameInterval: 0
         m_CastOffset: {x: 0, y: 0.4, z: -0.25}
         m_TriggerInteraction: 1
@@ -4714,7 +4714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3617948949862537795}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad3c196d0cbabd46951a32e0ec375af, type: 3}
   m_Name: 
@@ -8295,6 +8295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Opsive.UltimateCharacterController::Opsive.UltimateCharacterController.Character.AnimatorMonitor
   m_States:
+  - m_Name: FreeClimb
+    m_Preset: {fileID: 0}
+    m_BlockList: []
+    m_Default: 0
   - m_Name: Default
     m_Preset: {fileID: 0}
     m_BlockList: []
@@ -8323,6 +8327,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Opsive.UltimateCharacterController::Opsive.UltimateCharacterController.Character.CharacterIK
   m_States:
+  - m_Name: FreeClimb
+    m_Preset: {fileID: 11400000, guid: 67e82c229c1eb8746b691524886502c7, type: 2}
+    m_BlockList: []
+    m_Default: 0
   - m_Name: Default
     m_Preset: {fileID: 0}
     m_BlockList: []
