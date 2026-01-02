@@ -68,6 +68,7 @@ namespace HolidayGJ.Cards
             isCollected = true;
             
             CardManager.Instance.RunnerDeck.AddCard(cardToGive);
+            CardManager.Instance.NotifyCardCollected(cardToGive);
             
             if (collectVFX != null)
             {

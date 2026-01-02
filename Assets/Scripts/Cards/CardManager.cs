@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace HolidayGJ.Cards
@@ -24,6 +25,9 @@ namespace HolidayGJ.Cards
         
         public Deck RunnerDeck => runnerDeck;
         
+        public event Action<CardData> OnCardCollected;
+        public event Action<CardData> OnCardUsed;
+        
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -38,12 +42,27 @@ namespace HolidayGJ.Cards
             Initialize();
         }
         
+        private void OnDestroy()
+        {
+            if (instance == this)
+            {
+                if (runnerDeck != null)
+                {
+                    runnerDeck.OnCardAdded -= NotifyCardCollected;
+                    runnerDeck.OnCardUsed -= NotifyCardUsed;
+                }
+            }
+        }
+        
         public void Initialize()
         {
             if (runnerDeck == null)
             {
                 runnerDeck = gameObject.AddComponent<Deck>();
             }
+            
+            runnerDeck.OnCardAdded += NotifyCardCollected;
+            runnerDeck.OnCardUsed += NotifyCardUsed;
             
             Debug.Log("CardManager initialized");
         }
@@ -56,6 +75,16 @@ namespace HolidayGJ.Cards
             }
             
             Debug.Log("CardManager reset for new match");
+        }
+        
+        public void NotifyCardCollected(CardData card)
+        {
+            OnCardCollected?.Invoke(card);
+        }
+        
+        public void NotifyCardUsed(CardData card)
+        {
+            OnCardUsed?.Invoke(card);
         }
         
         [ContextMenu("Debug: Print Manager State")]
