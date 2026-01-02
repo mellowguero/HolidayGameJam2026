@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b08f9c15243694ebef6fc0dade1347, type: 3}
+  m_Name: FallingBlockCard
+  m_EditorClassIdentifier: Assembly-CSharp::HolidayGJ.Cards.CardData
+  cardName: Falling Block
+  description: Drop a massive falling block onto the Runner's path. Creates an obstacle
+    that must be avoided or navigated around.
+  cardIcon: {fileID: 0}
+  cardColor: {r: 0.6, g: 0.4, b: 0.2, a: 1}
+  category: 0
+  rarity: 0
+  abilityPrefab: {fileID: 5892398269603297954, guid: c4435a07ea29049d68c715f7a7c4f110, type: 3}
+  cooldown: 5
+  maxUses: 0

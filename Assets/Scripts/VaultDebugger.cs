@@ -35,11 +35,11 @@ public class VaultDebugger : MonoBehaviour
     {
         if (activated)
         {
-            Debug.Log($"<color=green>Ability STARTED: {ability.GetType().Name}</color>");
+            // Debug.Log($"<color=green>Ability STARTED: {ability.GetType().Name}</color>");
         }
         else
         {
-            Debug.Log($"<color=red>Ability STOPPED: {ability.GetType().Name}</color>");
+            // Debug.Log($"<color=red>Ability STOPPED: {ability.GetType().Name}</color>");
         }
     }
 
