@@ -4,9 +4,9 @@ namespace HolidayGJ.Cards
 {
     public enum CardCategory
     {
-        Environment,
-        Enemy,
-        Modifier
+        Movement,
+        Environmental,
+        Tactical
     }
 
     public enum CardRarity
@@ -16,28 +16,48 @@ namespace HolidayGJ.Cards
         Rare
     }
 
+    public enum RunnerAugmentType
+    {
+        JumpHeight,
+        TeleportRange,
+        SprintSpeed,
+        ClimbVaultSpeed,
+        LedgeGrabRange,
+        DodgeEffectiveness,
+        BlindSpotDuration,
+        InvisibilityDuration,
+        CamouflageLevel,
+        Custom
+    }
+
     [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Card Data")]
     public class CardData : ScriptableObject
     {
         [Header("Card Identity")]
         public string cardName;
-        [TextArea(3, 5)]
-        public string description;
         public Sprite cardIcon;
         public Color cardColor = Color.white;
-
-        [Header("Card Classification")]
         public CardCategory category;
         public CardRarity rarity;
 
-        [Header("Ability Settings")]
-        public GameObject abilityPrefab;
+        [Header("Runner Augment (Passive)")]
+        [TextArea(2, 3)]
+        public string runnerDescription;
+        public RunnerAugmentType augmentType;
+        public float[] augmentValuesPerLevel = new float[3];
+        public GameObject runnerVFXPrefab;
 
-        [Header("Usage Settings")]
-        [Tooltip("Seconds before card can be used again. 0 = no cooldown")]
-        public float cooldown = 0f;
-        
-        [Tooltip("Maximum uses. 0 = infinite uses")]
-        public int maxUses = 0;
+        [Header("Watcher Ability (Active)")]
+        [TextArea(2, 3)]
+        public string watcherDescription;
+        public GameObject watcherAbilityPrefab;
+        public float[] cooldownPerLevel = new float[3];
+        public int[] maxSimultaneousUsesPerLevel = new int[3];
+
+        [Header("Leveling")]
+        public int maxLevel = 3;
+
+        public float cooldown => cooldownPerLevel != null && cooldownPerLevel.Length > 0 ? cooldownPerLevel[0] : 0f;
+        public int maxUses => maxSimultaneousUsesPerLevel != null && maxSimultaneousUsesPerLevel.Length > 0 ? maxSimultaneousUsesPerLevel[0] : 0;
     }
 }

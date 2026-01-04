@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b08f9c15243694ebef6fc0dade1347, type: 3}
+  m_Name: GhostDecoy
+  m_EditorClassIdentifier: Assembly-CSharp::HolidayGJ.Cards.CardData
+  cardName: Ghost Decoy
+  cardIcon: {fileID: 0}
+  cardColor: {r: 0.5, g: 1, b: 0.5, a: 1}
+  category: 2
+  rarity: 1
+  runnerDescription: Runner gains invisibility with decoy (3s/5s/7s duration per
+    level)
+  augmentType: 7
+  augmentValuesPerLevel:
+  - 3
+  - 5
+  - 7
+  runnerVFXPrefab: {fileID: 0}
+  watcherDescription: Watcher deploys spotlight/reveal flare (3s/5s/7s duration per
+    level)
+  watcherAbilityPrefab: {fileID: 0}
+  cooldownPerLevel:
+  - 18
+  - 15
+  - 12
+  maxSimultaneousUsesPerLevel: 020000000200000003000000
+  maxLevel: 3
