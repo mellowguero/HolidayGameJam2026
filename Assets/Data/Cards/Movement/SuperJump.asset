@@ -13,22 +13,25 @@ MonoBehaviour:
   m_Name: SuperJump
   m_EditorClassIdentifier: Assembly-CSharp::HolidayGJ.Cards.CardData
   cardName: Super Jump
+  description: 
   cardIcon: {fileID: 0}
   cardColor: {r: 0.2, g: 0.7, b: 1, a: 1}
   category: 0
   rarity: 0
   runnerDescription: Runner gains increased jump height (+30%/60%/100% per level)
-  augmentType: 0
+  augmentType: 1
   augmentValuesPerLevel:
-  - 0.3
-  - 0.6
-  - 1
+  - 1.5
+  - 1.75
+  - 2
+  isActiveAbility: 0
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher places low ceiling barriers to limit jump height
   watcherAbilityPrefab: {fileID: 0}
-  cooldownPerLevel:
-  - 18
-  - 14
-  - 10
-  maxSimultaneousUsesPerLevel: 010000000200000003000000
-  maxLevel: 3
+  watcherCooldownPerLevel:
+  - 0
+  - 0
+  - 0
+  watcherUsesPerLevel: 000000000000000000000000
+  cooldown: 0
+  maxUses: 0

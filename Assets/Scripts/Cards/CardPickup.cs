@@ -67,8 +67,8 @@ namespace HolidayGJ.Cards
             
             isCollected = true;
             
-            int runnerPlayerID = CardManager.Instance.currentRunnerPlayerID;
-            CardManager.Instance.AddCardToPlayer(runnerPlayerID, cardToGive);
+            CardManager.Instance.RunnerDeck.AddCard(cardToGive);
+            CardManager.Instance.NotifyCardCollected(cardToGive);
             
             if (collectVFX != null)
             {
@@ -80,7 +80,7 @@ namespace HolidayGJ.Cards
                 AudioSource.PlayClipAtPoint(collectSound, transform.position);
             }
             
-            Debug.Log($"Player {runnerPlayerID} collected card: {cardToGive.cardName}");
+            Debug.Log($"Collected card: {cardToGive.cardName}");
             
             Destroy(gameObject);
         }

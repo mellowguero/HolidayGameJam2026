@@ -19,6 +19,20 @@ MonoBehaviour:
   cardColor: {r: 0.2, g: 0.8, b: 0.3, a: 1}
   category: 2
   rarity: 1
-  abilityPrefab: {fileID: 0}
+  runnerDescription: 
+  augmentType: 1
+  augmentValuesPerLevel:
+  - 0
+  - 0
+  - 0
+  isActiveAbility: 0
+  runnerVFXPrefab: {fileID: 0}
+  watcherDescription: 
+  watcherAbilityPrefab: {fileID: 0}
+  watcherCooldownPerLevel:
+  - 0
+  - 0
+  - 0
+  watcherUsesPerLevel: 000000000000000000000000
   cooldown: 10
   maxUses: 2

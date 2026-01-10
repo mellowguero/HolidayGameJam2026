@@ -24,6 +24,7 @@ MonoBehaviour:
   - 3
   - 5
   - 7
+  isActiveAbility: 1
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher deploys spotlight/reveal flare (3s/5s/7s duration per
     level)

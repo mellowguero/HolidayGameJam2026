@@ -20,9 +20,10 @@ MonoBehaviour:
   runnerDescription: Runner gains sprint speed burst (+20%/40%/60% per level)
   augmentType: 2
   augmentValuesPerLevel:
-  - 0.2
-  - 0.4
-  - 0.6
+  - 1.25
+  - 1.5
+  - 1.75
+  isActiveAbility: 0
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher places slow zones reducing Runner speed by 30%/50%/70%
   watcherAbilityPrefab: {fileID: 0}

@@ -21,9 +21,10 @@ MonoBehaviour:
     per level)
   augmentType: 5
   augmentValuesPerLevel:
-  - 0.1
-  - 0.2
-  - 0.3
+  - 1.2
+  - 1.4
+  - 1.6
+  isActiveAbility: 0
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher spawns moving chasers (1/2/3 chasers per level)
   watcherAbilityPrefab: {fileID: 0}

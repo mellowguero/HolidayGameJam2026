@@ -24,6 +24,7 @@ MonoBehaviour:
   - 3
   - 5
   - 8
+  isActiveAbility: 1
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher reveals blind-spots (2s/4s/6s duration per level)
   watcherAbilityPrefab: {fileID: 0}

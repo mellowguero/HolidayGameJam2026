@@ -14,7 +14,6 @@ namespace HolidayGameJam.UI
         [Header("Settings")]
         [SerializeField] private int maxCardSlots = 10;
         [SerializeField] private bool autoFindCardManager = true;
-        [SerializeField] private int displayPlayerID = 1;
         
         private List<CardSlotUI> cardSlots = new List<CardSlotUI>();
         private Dictionary<CardData, CardSlotUI> cardToSlotMap = new Dictionary<CardData, CardSlotUI>();
@@ -45,36 +44,28 @@ namespace HolidayGameJam.UI
             }
             
             InitializeCardSlots();
-            SubscribeToDeckEvents();
+            
+            if (cardManager.RunnerDeck != null)
+            {
+                cardManager.RunnerDeck.OnCardAdded += OnCardAdded;
+                cardManager.RunnerDeck.OnCardUsed += OnCardUsed;
+            }
+            
             RefreshAllCards();
         }
         
         private void OnDestroy()
         {
-            UnsubscribeFromDeckEvents();
-        }
-        
-        private void SubscribeToDeckEvents()
-        {
-            PlayerDeck deck = cardManager.GetPlayerDeck(displayPlayerID);
-            if (deck != null)
+            if (cardManager != null && cardManager.RunnerDeck != null)
             {
-                deck.OnCardAdded += OnCardAdded;
-                deck.OnCardLeveledUp += OnCardLeveledUp;
+                cardManager.RunnerDeck.OnCardAdded -= OnCardAdded;
+                cardManager.RunnerDeck.OnCardUsed -= OnCardUsed;
             }
         }
         
-        private void UnsubscribeFromDeckEvents()
+        private void Update()
         {
-            if (cardManager != null)
-            {
-                PlayerDeck deck = cardManager.GetPlayerDeck(displayPlayerID);
-                if (deck != null)
-                {
-                    deck.OnCardAdded -= OnCardAdded;
-                    deck.OnCardLeveledUp -= OnCardLeveledUp;
-                }
-            }
+            UpdateCardStates();
         }
         
         private void InitializeCardSlots()
@@ -105,58 +96,69 @@ namespace HolidayGameJam.UI
         
         private void RefreshAllCards()
         {
-            if (cardManager == null)
-            {
-                return;
-            }
-            
-            PlayerDeck deck = cardManager.GetPlayerDeck(displayPlayerID);
-            if (deck == null)
+            if (cardManager == null || cardManager.RunnerDeck == null)
             {
                 return;
             }
             
             cardToSlotMap.Clear();
             
-            var cardInstances = deck.Cards;
+            CardData[] uniqueCards = cardManager.RunnerDeck.GetAllCards();
             
-            Debug.Log($"[WatcherDeckUI] Refreshing UI with {cardInstances.Count} cards for Player {displayPlayerID}");
+            Debug.Log($"[WatcherDeckUI] Refreshing UI with {uniqueCards.Length} unique cards");
+            for (int i = 0; i < uniqueCards.Length; i++)
+            {
+                Debug.Log($"[WatcherDeckUI] Card {i}: {uniqueCards[i].cardName}");
+            }
             
             for (int i = 0; i < cardSlots.Count; i++)
             {
-                if (i < cardInstances.Count)
+                if (i < uniqueCards.Length)
                 {
-                    CardInstance cardInstance = cardInstances[i];
-                    cardSlots[i].Setup(cardInstance.cardData);
-                    cardToSlotMap[cardInstance.cardData] = cardSlots[i];
-                    
-                    cardSlots[i].UpdateState(true, 0f, cardInstance.currentLevel);
-                    
-                    Debug.Log($"[WatcherDeckUI] Slot {i}: {cardInstance.cardData.cardName} (Lvl {cardInstance.currentLevel})");
+                    cardSlots[i].Setup(uniqueCards[i]);
+                    cardToSlotMap[uniqueCards[i]] = cardSlots[i];
+                    Debug.Log($"[WatcherDeckUI] Slot {i} setup with card: {uniqueCards[i].cardName}");
                 }
                 else
                 {
                     cardSlots[i].Clear();
                 }
             }
+            
+            UpdateCardStates();
         }
         
-        private void OnCardAdded(CardInstance card)
+        private void UpdateCardStates()
+        {
+            if (cardManager == null || cardManager.RunnerDeck == null)
+            {
+                return;
+            }
+            
+            foreach (var kvp in cardToSlotMap)
+            {
+                CardData card = kvp.Key;
+                CardSlotUI slot = kvp.Value;
+                
+                if (card != null && slot != null)
+                {
+                    bool canUse = cardManager.RunnerDeck.CanUseCard(card);
+                    float cooldown = cardManager.RunnerDeck.GetCardCooldown(card);
+                    int remainingUses = cardManager.RunnerDeck.GetCardRemainingUses(card);
+                    
+                    slot.UpdateState(canUse, cooldown, remainingUses);
+                }
+            }
+        }
+        
+        private void OnCardAdded(CardData card)
         {
             RefreshAllCards();
         }
         
-        private void OnCardLeveledUp(CardInstance card)
+        private void OnCardUsed(CardData card)
         {
-            RefreshAllCards();
-        }
-        
-        public void SetDisplayPlayer(int playerID)
-        {
-            UnsubscribeFromDeckEvents();
-            displayPlayerID = playerID;
-            SubscribeToDeckEvents();
-            RefreshAllCards();
+            UpdateCardStates();
         }
         
         [ContextMenu("Debug: Refresh UI")]
