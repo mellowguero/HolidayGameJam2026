@@ -23,7 +23,7 @@ MonoBehaviour:
   augmentValuesPerLevel:
   - 1.5
   - 1.75
-  - 2
+  - 3.97
   isActiveAbility: 0
   runnerVFXPrefab: {fileID: 0}
   watcherDescription: Watcher places low ceiling barriers to limit jump height

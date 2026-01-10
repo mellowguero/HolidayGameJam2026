@@ -57,6 +57,7 @@ namespace HolidayGJ.Cards
             if (speedChangeAbility != null)
             {
                 baseValues["SpeedChange.Multiplier"] = GetAbilityFieldValue<float>(speedChangeAbility, "m_SpeedChangeMultiplier");
+                baseValues["SpeedChange.MaxValue"] = GetAbilityFieldValue<float>(speedChangeAbility, "m_MaxSpeedChangeValue");
             }
             else if (showDebugLogs)
             {
@@ -253,10 +254,11 @@ namespace HolidayGJ.Cards
             float newSpeed = baseSpeed * multiplier;
 
             SetAbilityFieldValue(speedChangeAbility, "m_SpeedChangeMultiplier", newSpeed);
+            SetAbilityFieldValue(speedChangeAbility, "m_MaxSpeedChangeValue", newSpeed);
 
             if (showDebugLogs)
             {
-                Debug.Log($"RunnerAugmentController: Speed Multiplier {baseSpeed:F2} → {newSpeed:F2} (×{multiplier:F2})");
+                Debug.Log($"RunnerAugmentController: Speed Multiplier & Max {baseSpeed:F2} → {newSpeed:F2} (×{multiplier:F2})");
             }
         }
 
@@ -411,6 +413,10 @@ namespace HolidayGJ.Cards
             if (speedChangeAbility != null && baseValues.ContainsKey("SpeedChange.Multiplier"))
             {
                 SetAbilityFieldValue(speedChangeAbility, "m_SpeedChangeMultiplier", baseValues["SpeedChange.Multiplier"]);
+                if (baseValues.ContainsKey("SpeedChange.MaxValue"))
+                {
+                    SetAbilityFieldValue(speedChangeAbility, "m_MaxSpeedChangeValue", baseValues["SpeedChange.MaxValue"]);
+                }
             }
 
             var freeClimbAbility = locomotion.GetAbility<FreeClimb>();

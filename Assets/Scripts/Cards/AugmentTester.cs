@@ -1,4 +1,6 @@
 using UnityEngine;
+using Opsive.UltimateCharacterController.Character;
+using Opsive.UltimateCharacterController.Character.Abilities;
 
 namespace HolidayGJ.Cards
 {
@@ -23,6 +25,12 @@ namespace HolidayGJ.Cards
         [Header("Display")]
         [SerializeField] private bool showActiveAugments = true;
 
+        [Header("Speed Test")]
+        [SerializeField] private bool forceSpeedActive = false;
+
+        private UltimateCharacterLocomotion locomotion;
+        private SpeedChange speedChangeAbility;
+
         private void Start()
         {
             if (augmentController == null)
@@ -33,6 +41,40 @@ namespace HolidayGJ.Cards
             if (augmentController == null)
             {
                 Debug.LogWarning("AugmentTester: No RunnerAugmentController found in scene");
+                return;
+            }
+
+            locomotion = augmentController.GetComponent<UltimateCharacterLocomotion>();
+            if (locomotion != null)
+            {
+                speedChangeAbility = locomotion.GetAbility<SpeedChange>();
+            }
+        }
+
+        private void Update()
+        {
+            if (forceSpeedActive && speedChangeAbility != null && locomotion != null)
+            {
+                locomotion.InputVector = new UnityEngine.Vector2(0, 1f);
+                
+                if (!speedChangeAbility.IsActive)
+                {
+                    bool started = locomotion.TryStartAbility(speedChangeAbility);
+                    if (!started)
+                    {
+                        Debug.LogWarning($"AugmentTester: Failed to start SpeedChange. Enabled: {speedChangeAbility.Enabled}, Grounded: {locomotion.Grounded}");
+                    }
+                    else
+                    {
+                        var multiplierField = typeof(SpeedChange).GetField("m_SpeedChangeMultiplier", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        float currentMultiplier = (float)multiplierField.GetValue(speedChangeAbility);
+                        Debug.Log($"AugmentTester: SpeedChange ACTIVATED! Multiplier = {currentMultiplier}");
+                    }
+                }
+            }
+            else if (!forceSpeedActive && locomotion != null)
+            {
+                locomotion.InputVector = UnityEngine.Vector2.zero;
             }
         }
 
@@ -89,6 +131,60 @@ namespace HolidayGJ.Cards
             Debug.Log("AugmentTester: Cleared all augments");
         }
 
+        [ContextMenu("Toggle Force Speed Active")]
+        public void ToggleForceSpeed()
+        {
+            forceSpeedActive = !forceSpeedActive;
+            
+            if (forceSpeedActive)
+            {
+                Debug.Log("AugmentTester: Speed boost FORCED ON - simulating forward movement");
+            }
+            else
+            {
+                Debug.Log("AugmentTester: Speed boost force OFF");
+                if (speedChangeAbility != null && speedChangeAbility.IsActive)
+                {
+                    locomotion.TryStopAbility(speedChangeAbility);
+                }
+                if (locomotion != null)
+                {
+                    locomotion.InputVector = UnityEngine.Vector2.zero;
+                }
+            }
+        }
+
+        [ContextMenu("Test Speed Boost (3 seconds)")]
+        public void TestSpeedBoost()
+        {
+            if (speedChangeAbility == null)
+            {
+                Debug.LogError("AugmentTester: SpeedChange ability not found");
+                return;
+            }
+
+            var multiplierField = typeof(SpeedChange).GetField("m_SpeedChangeMultiplier", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            float currentMultiplier = (float)multiplierField.GetValue(speedChangeAbility);
+            Debug.Log($"AugmentTester: Testing speed boost. Current multiplier = {currentMultiplier}");
+
+            StartCoroutine(TestSpeedCoroutine());
+        }
+
+        private System.Collections.IEnumerator TestSpeedCoroutine()
+        {
+            Debug.Log("AugmentTester: Activating speed boost for 3 seconds...");
+            forceSpeedActive = true;
+            
+            yield return new WaitForSeconds(3f);
+            
+            forceSpeedActive = false;
+            if (speedChangeAbility != null && speedChangeAbility.IsActive)
+            {
+                locomotion.TryStopAbility(speedChangeAbility);
+            }
+            Debug.Log("AugmentTester: Speed boost test complete");
+        }
+
         [ContextMenu("Print Active Augments")]
         public void PrintActiveAugments()
         {
@@ -133,8 +229,15 @@ namespace HolidayGJ.Cards
         {
             if (!showActiveAugments || augmentController == null) return;
 
-            GUILayout.BeginArea(new Rect(10, 10, 300, 400));
+            GUILayout.BeginArea(new Rect(10, 10, 300, 450));
             GUILayout.Box("=== AUGMENT TESTER ===");
+
+            if (forceSpeedActive)
+            {
+                GUI.color = Color.yellow;
+                GUILayout.Label("⚡ SPEED BOOST FORCED ON ⚡");
+                GUI.color = Color.white;
+            }
 
             GUILayout.Label("Passive Augments:");
             var augments = augmentController.GetActiveAugments();
@@ -163,6 +266,16 @@ namespace HolidayGJ.Cards
                 {
                     GUILayout.Label($"  {kvp.Key}: {kvp.Value} charges");
                 }
+            }
+
+            GUILayout.Space(10);
+            if (GUILayout.Button("Toggle Force Speed"))
+            {
+                ToggleForceSpeed();
+            }
+            if (GUILayout.Button("Test Speed (3s)"))
+            {
+                TestSpeedBoost();
             }
 
             GUILayout.EndArea();

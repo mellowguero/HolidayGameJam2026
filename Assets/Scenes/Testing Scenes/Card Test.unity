@@ -4373,11 +4373,12 @@ MonoBehaviour:
   augmentController: {fileID: 1236427132}
   testCard1: {fileID: 11400000, guid: e5d1a8b149eba8a48aa7afa6388d1800, type: 2}
   testCard2: {fileID: 0}
-  testCard3: {fileID: 0}
+  testCard3: {fileID: 11400000, guid: 4ddc30183575229469a8538c3869701e, type: 2}
   testCard1Level: 3
   testCard2Level: 1
   testCard3Level: 1
   showActiveAugments: 1
+  forceSpeedActive: 0
 --- !u!4 &2130314730
 Transform:
   m_ObjectHideFlags: 0
