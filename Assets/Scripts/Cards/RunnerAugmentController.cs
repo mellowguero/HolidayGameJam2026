@@ -6,6 +6,7 @@ using Opsive.UltimateCharacterController.Character;
 using Opsive.UltimateCharacterController.Character.Abilities;
 using Opsive.UltimateCharacterController.AddOns.Agility;
 using Opsive.UltimateCharacterController.AddOns.Climbing;
+using HolidayGJ.Abilities;
 
 namespace HolidayGJ.Cards
 {
@@ -345,9 +346,53 @@ namespace HolidayGJ.Cards
 
         private void ApplyTeleportation()
         {
+            var teleportAbility = locomotion.GetAbility<TeleportAbility>();
+            if (teleportAbility == null)
+            {
+                if (showDebugLogs) Debug.LogWarning("RunnerAugmentController: TeleportAbility not found on character");
+                return;
+            }
+
+            if (!activePassiveAugments.ContainsKey(RunnerAugmentType.TeleportRange))
+            {
+                if (showDebugLogs) Debug.LogWarning("RunnerAugmentController: No TeleportRange augments active");
+                return;
+            }
+
+            var cards = activePassiveAugments[RunnerAugmentType.TeleportRange];
+            if (cards.Count == 0)
+            {
+                return;
+            }
+
+            CardInstance latestCard = cards[cards.Count - 1];
+            int level = latestCard.currentLevel;
+
+            float range = 5f;
+            float cooldown = 3f;
+
+            switch (level)
+            {
+                case 1:
+                    range = 5f;
+                    cooldown = 3f;
+                    break;
+                case 2:
+                    range = 8f;
+                    cooldown = 2.5f;
+                    break;
+                case 3:
+                    range = 12f;
+                    cooldown = 2f;
+                    break;
+            }
+
+            teleportAbility.MaxRange = range;
+            teleportAbility.CooldownDuration = cooldown;
+
             if (showDebugLogs)
             {
-                Debug.Log("RunnerAugmentController: Teleportation augment applied (custom implementation required)");
+                Debug.Log($"RunnerAugmentController: Teleportation configured - Range: {range}m, Cooldown: {cooldown}s");
             }
         }
 
